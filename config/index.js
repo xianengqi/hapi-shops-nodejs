@@ -1,4 +1,4 @@
-const { env } = process;
+const env = process.env;
 
 module.exports = {
   host: env.HOST,
