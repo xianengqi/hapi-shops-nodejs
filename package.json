@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/xianengqi/hapi-shops-nodejs#readme",
   "dependencies": {
+    "env2": "^2.2.2",
     "hapi": "^16.7.0"
   }
 }

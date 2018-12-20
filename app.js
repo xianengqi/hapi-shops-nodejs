@@ -1,22 +1,20 @@
-const Hapi = require('hapi')
+const Hapi = require('hapi');
+require('env2')('./.env');
+const config = require('./config');
+const routesHelloHapi = require('./routes/hello-hapi');
 
 const server = new Hapi.Server()
 
 // 配置服务器启动 host 与端口
 server.connection({
-  port: 3000,
-  host: '127.0.0.1',
+  port: config.port,
+  host: config.host,
 });
 
 const init = async () => {
   server.route([
-    {
-      method: 'GET',
-      path: '/',
-      handler: (request, reply) => {
-        reply('hello hapi');
-      },
-    },
+    // 创建一个简单的 hello hapi 接口
+    ...routesHelloHapi,
   ]);
   // 启动服务
   await server.start();
