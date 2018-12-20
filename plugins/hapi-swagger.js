@@ -17,6 +17,7 @@ module.exports = [
       grouping: 'tags',
       tags: [
         { name: 'tests', description: '测试相关' },
+        { name: 'home', description: '首页数据' },
       ],
     },
   },
