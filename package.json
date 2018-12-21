@@ -26,5 +26,10 @@
     "joi": "^13.7.0",
     "package": "^1.0.1",
     "vision": "^4.1.1"
+  },
+  "devDependencies": {
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0"
   }
 }
