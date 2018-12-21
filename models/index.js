@@ -8,7 +8,14 @@ const env = process.env.NODE_ENV || 'development';
 // const config = require(__dirname + '/../config/config.js')[env];
 const configs = require('../config/config.js');
 const db = {};
-const config = configs[env];
+// const config = configs[env];
+const config = {
+  ...configs[env],
+  define: {
+    underscored: true,
+  },
+  timezone: '+08:00' // 时区设置
+};
 let sequelize = null;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
