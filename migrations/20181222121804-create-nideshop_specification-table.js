@@ -1,0 +1,27 @@
+'use strict';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => queryInterface.createTable(
+    'nideshop_specification',
+    {
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      sort_order: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      created_at: Sequelize.DATE,
+      updated_at: Sequelize.DATE,
+    }
+  ),
+
+  down: queryInterface => queryInterface.dropTable('nideshop_specification')
+};
