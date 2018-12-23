@@ -1,3 +1,6 @@
+const Joi = require('joi');
+const { paginationDefine } = require('../utils/router-helper');
+const models = require('../models');
 const GROUP_NAME = 'address';
 
 module.exports = [
@@ -5,6 +8,17 @@ module.exports = [
     method: 'PUT',
     path: `/${GROUP_NAME}/{addressId}/saveAction`,
     handler: async (request, reply) => {
+      // 增加带有where 的条件查询语句
+      const {
+        rows: results,
+        count: totalCount
+      } = await models.nideshop_address.findAndCountAll({
+        where: {
+          user_id: request.params.addressId,
+          is_default: 1
+        },
+        // attributes: 
+      })
       reply();
     },
     config: {

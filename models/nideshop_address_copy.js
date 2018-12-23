@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
       defaultValue: false,
     },
     address: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     mobile: {
