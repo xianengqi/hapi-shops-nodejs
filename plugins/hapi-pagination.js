@@ -68,7 +68,13 @@ const options = {
   routes: {
     // 需要分页在此配置路由
     include: [
-      // '/shops'
+      '/home/newGoods',
+      '/home/channel',
+      '/home',
+      '/home/hotGoods',
+      '/home/brandList',
+      '/home/topicList',
+      '/home/categoryList',
     ],
     exclude: [],
   },
