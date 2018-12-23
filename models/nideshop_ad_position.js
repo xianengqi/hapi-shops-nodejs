@@ -1,39 +1,31 @@
 module.exports = (sequelize, DataTypes) => sequelize.define(
-  'nideshop_address_copy',
+  'nideshop_ad_position',
   {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-      },
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_id: {
+    width: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: false,
     },
-    address: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    mobile: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    is_default: {
-      type: DataTypes.BOOLEAN,
+    height: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: false,
     },
-    address_detail: {
+    desc: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
-    tableName: 'nideshop_address_copy',
+    tableName: 'nideshop_ad_position',
   },
-)
+);

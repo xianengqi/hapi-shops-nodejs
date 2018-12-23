@@ -2,34 +2,34 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
   'nideshop_address',
   {
     id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     user_id: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       defaultValue: false,
       allowNull: false,
     },
     address: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     mobile: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     is_default: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
     },
     address_detail: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
   },
