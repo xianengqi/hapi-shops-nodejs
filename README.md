@@ -4,10 +4,11 @@
 ```js
 ├── LICENSE
 ├── README.md
-├── README1.md
+├── 
 ├── app.js                   # 项目入口文件
 ├── config                   # 项目配置目录 
 │   └── index.js             # 配置项目中的配置信息
+├── migrations               # 数据迁移的目录
 ├── models                   # 数据库 model
 ├── package-lock.json
 ├── package.json             # JS 项目工程依赖库
@@ -27,7 +28,9 @@
 │   ├── order.js             # 订单相关接口
 │   ├── search.js            # 搜索相关接口
 │   └── topic.js             # 专题相关接口
+├── seeders                  # 数据填充的目录
 └── utils                    # 工具类相关目录
+├── .env.example             # 数据库与端口的配置文件，同步生成一份.env文件上传到git仓库时隐藏
 
 5 directories, 21 files
 ```
