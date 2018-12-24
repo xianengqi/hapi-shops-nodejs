@@ -75,6 +75,8 @@ const options = {
       '/home/brandList',
       '/home/topicList',
       '/home/categoryList',
+      '/home/childCategoryIds',
+      '/home/categoryGoods',
     ],
     exclude: [],
   },
