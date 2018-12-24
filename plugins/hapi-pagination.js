@@ -80,6 +80,8 @@ const options = {
       '/brand',
       '/brand/{shopGoodId}/detail',
       '/brand/{brandId}/goodsList',
+      '/category',
+      '/category/{categoryId}/indexaction',
     ],
     exclude: [],
   },
