@@ -8,17 +8,7 @@ module.exports = [
     method: 'GET',
     path: `/${GROUP_NAME}`,
     handler: async (request, reply) => {
-      const { rows: results, count: totalCount } = await models.nideshop_brand.findAndCountAll({
-        attributes: [
-          'id', 'name', 'floor_price', 'app_list_pic_url'
-        ],
-        limit: request.query.limit,
-        offset: (request.query.page - 1) * request.query.limit,
-      })
-      reply({
-        results,
-        totalCount
-      });
+
     },
     config: {
       tags: ['api', GROUP_NAME],
@@ -35,20 +25,7 @@ module.exports = [
     method: 'GET',
     path: `/${GROUP_NAME}/{shopGoodId}/detail`,
     handler: async (request, reply) => {
-      const {
-        rows: results,
-        count: totalCount
-      } = await models.nideshop_brand.findAndCountAll({
-        where: {
-          id: request.params.shopGoodId,
-        },
-        limit: request.query.limit,
-        offset: (request.query.page - 1) * request.query.limit,
-      })
-      reply({
-        results,
-        totalCount,
-      });
+
     },
     config: {
       tags: ['api', GROUP_NAME],
@@ -68,20 +45,7 @@ module.exports = [
     method: 'GET',
     path: `/${GROUP_NAME}/{brandId}/goodsList`,
     handler: async (request, reply) => {
-      const {
-        rows: results,
-        count: totalCount
-      } = await models.nideshop_goods.findAndCountAll({
-        where: {
-          brand_id: request.params.brandId,
-        },
-        limit: request.query.limit,
-        offset: (request.query.page - 1) * request.query.limit,
-      });
-      reply({
-        results,
-        totalCount,
-      });
+      
     },
     config: {
       tags: ['api', GROUP_NAME],
