@@ -1,19 +1,8 @@
 const Hapi = require('hapi');
 require('env2')('./.env');
 const config = require('./config');
-// 路由相关配置
-const routesHelloHapi = require('./routes/hello-hapi');
-const routesHome = require('./routes/home');
-const routesBrand = require('./routes/brand');
-const routesCategory = require('./routes/category');
-const routesGoods = require('./routes/goods');
-const routesTopic = require('./routes/topic');
-const routesSearch = require('./routes/search');
-const routesCollect = require('./routes/collect');
-const routesCart = require('./routes/cart');
-const routesOrder = require('./routes/order');
-const routesAddress = require('./routes/address');
-const routesFeedback = require('./routes/feedback');
+const routes = require('./routes');
+
 // 引入自定义的 hapi-swagger 插件配置
 const pluginHapiSwagger = require('./plugins/hapi-swagger');
 const pluginHapiPageination = require('./plugins/hapi-pagination');
@@ -23,7 +12,19 @@ const server = new Hapi.Server();
 server.connection({
   port: config.port,
   host: config.host,
+  routes: {
+    cors: true
+  }
 });
+
+// 路由设置
+// server.route({
+//   path: '/',
+//   method: 'GET',
+//   hadnler: (request, reply) => {
+//     reply('欢迎来到')
+//   }
+// })
 
 const init = async () => {
   // 注册插件
@@ -31,24 +32,15 @@ const init = async () => {
     ...pluginHapiSwagger,
     pluginHapiPageination,
   ]);
-  // 路由相关插件
-  server.route([
-    ...routesHelloHapi,
-    ...routesHome,
-    ...routesBrand,
-    ...routesCategory,
-    ...routesGoods,
-    ...routesTopic,
-    ...routesSearch,
-    ...routesCollect,
-    ...routesCart,
-    ...routesOrder,
-    ...routesAddress,
-    ...routesFeedback,
-  ]);
+  // 路由开始注册
+  Object.values(routes).map(route => {
+    route.forEach(api => {
+      server.route(api);
+    });
+  })
   // 启动服务
   await server.start();
-  console.log(`Server running at: ${server.info.uri}`);
+  console.log(`服务启动: ${server.info.uri}`);
 }
 
 init();

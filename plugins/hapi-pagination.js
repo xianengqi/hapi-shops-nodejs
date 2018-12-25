@@ -81,7 +81,7 @@ const options = {
       '/brand/{shopGoodId}/detail',
       '/brand/{brandId}/goodsList',
       '/category',
-      '/category/{categoryId}/indexaction',
+      '/category/currentAction',
     ],
     exclude: [],
   },
