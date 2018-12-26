@@ -70,19 +70,10 @@ const pageOptions = {
   routes: {
     // 需要分页在此配置路由
     include: [
-      '/home/newGoods',
-      '/home/channel',
       '/home',
-      '/home/hotGoods',
-      '/home/brandList',
-      '/home/topicList',
-      '/home/categoryList',
-      '/home/childCategoryIds',
-      '/home/categoryGoods',
-      '/brand',
-      '/brand/{shopGoodId}/detail',
-      '/brand/{brandId}/goodsList',
-      '/category',
+      '/brand/listAction',
+      '/brand/detailaction',
+      '/category/indexAction',
       '/category/currentAction',
     ],
     exclude: [],

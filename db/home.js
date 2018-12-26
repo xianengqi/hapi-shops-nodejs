@@ -91,12 +91,12 @@ module.exports = async (request, reply) => {
         return item.id;
       });
       // 在商品中找到 在childCategoryIds里的七条数据
-      let categoryGoods = await models.nideshop_goods.findAndCountAll({
+      const categoryGoods = await models.nideshop_goods.findAndCountAll({
         where: {
-          category_id: childCategoryIds
-          // category_id: {
-          //   [Op.in]: childCategoryIds,
-          // },
+          // category_id: childCategoryIds
+          category_id: {
+            [Op.in]: childCategoryIds,
+          },
         },
         attributes: ['id', 'name', 'list_pic_url', 'retail_price'],
         limit: 7,

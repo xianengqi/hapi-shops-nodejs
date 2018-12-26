@@ -21,6 +21,7 @@ module.exports = [
       validate: {
         query: {
           ...paginationDefine,
+          // newCategoryList: Joi.number().required().description('在商品中找到 在childCategoryIds里的七条数据ID')
         }
       }
     },
