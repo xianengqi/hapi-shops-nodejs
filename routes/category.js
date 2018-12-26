@@ -26,7 +26,7 @@ module.exports = [
   // 通过分类的id来查询子类接口
   {
     method: 'GET',
-    path: `/${GROUP_NAME}/{categoryId}/currentAction`,
+    path: `/${GROUP_NAME}/currentAction`,
     handler: async (request, reply) => {
       let res = await controllers.category.currentAction(request);
       middleware.dbErrorMiddleware(request, res, reply);
@@ -35,12 +35,13 @@ module.exports = [
       tags: ['api', GROUP_NAME],
       description: '通过分类的id来查询子类接口',
       validate: {
-        params: {
-          categoryId: Joi.number().required().description('获取分类里的子类ID'),
-        },
+        // params: {
+        //   categoryId: Joi.number().required().description('获取分类里的子类ID'),
+        // },
         query: {
           ...paginationDefine,
-          // categoryId: Joi.number().required().description('获取分类里的子类ID')
+          id: Joi.number().required().description('点击右侧分类时获取左侧分类ID'),
+            parent_id: Joi.number().required().description('获得它的同类ID'),
         }
       },
     },
@@ -62,7 +63,8 @@ module.exports = [
         // },
         query: {
           ...paginationDefine,
-          categoryId: Joi.number().required().description('获取分类里的子类ID')
+          id: Joi.number().required().description('获得当前分类ID'),
+          parent_id: Joi.number().required().description('获得它的同类ID'),
         }
       },
     }

@@ -42,28 +42,26 @@ indexAction = async (request) => {
 // 点击右侧分类时获取左侧分类
 currentAction = async (request) => {
   try{
-    // const { id: categoryId } = request.query;
-    const data = {};
     // 获取分类里的子类
     const currentOne = await models.nideshop_category.findAndCountAll({
       where: {
-        "id": request.params.categoryId
+        "id": request.query.id
       },
       limit: request.query.limit,
       offset: (request.query.page - 1) * request.query.limit,
     });
     const subList = await models.nideshop_category.findAndCountAll({
       where: {
-        "parent_id": currentOne[0].id
+        "parent_id": request.query.id
       },
       limit: request.query.limit,
       offset: (request.query.page - 1) * request.query.limit, 
     });
-    data.currentOne = currentOne[0];
-    data.currentOne.subList = subList;
+
     return {
       results: {
-        data: data,
+        data: currentOne,
+        subList
       },
       // totalCount: totalCount,
       dataBaseError: false
@@ -80,18 +78,18 @@ currentAction = async (request) => {
  */
 categoryNav = async (request) => {
   try{
-    const categoryId = request.query.id;
+    // const categoryId = request.query.id;
     // 获得当前分类
     const currentNav = await models.nideshop_category.findAndCountAll({
       where: {
-        id: categoryId
+        id: request.query.id
       },
 
     });
     // 获得它的同类
     const navData = await models.nideshop_category.findAndCountAll({
       where: {
-        "parent_id": currentNav[0].parent_id
+        parent_id: request.query.parent_id
       }
     });
     return {
