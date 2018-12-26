@@ -36,7 +36,7 @@ module.exports = [
       validate: {
         query: {
           ...paginationDefine,
-          id: Joi.number().required().description('品牌商ID')
+          id: Joi.number().description('品牌商ID')
         },
       },
     },

@@ -75,6 +75,8 @@ const pageOptions = {
       '/brand/detailaction',
       '/category/indexAction',
       '/category/currentAction',
+      '/category/categoryNav',
+      '/goods/detailaction',
     ],
     exclude: [],
   },

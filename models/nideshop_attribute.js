@@ -1,10 +1,15 @@
-module.exports = (sequelize, DataTypes) => sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  const nideshop_attribute = sequelize.define(
   'nideshop_attribute',
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+      references: {
+        model: 'nideshop_goods_attribute',
+        key: 'id'
+      }
     },
     attribute_category_id: {
       type: DataTypes.INTEGER,
@@ -32,5 +37,12 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
   },
   {
     tableName: 'nideshop_attribute'
-  },
-);
+  });
+  nideshop_attribute.associate = function (models) {
+    nideshop_attribute.belongsTo(models.nideshop_goods_attribute, {
+      foreignKey: 'attribute_id',
+      sourceKey: 'id'
+    });
+  }
+  return nideshop_attribute;
+}

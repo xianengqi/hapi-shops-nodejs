@@ -18,7 +18,7 @@ module.exports = [
       validate: {
         query: {
           ...paginationDefine,
-          categoryId: Joi.number().required().description('获取分类里的子类ID')
+          categoryId: Joi.number().description('获取分类里的子类ID')
         }
       },
     },
@@ -40,8 +40,8 @@ module.exports = [
         // },
         query: {
           ...paginationDefine,
-          id: Joi.number().required().description('点击右侧分类时获取左侧分类ID'),
-            parent_id: Joi.number().required().description('获得它的同类ID'),
+          id: Joi.number().description('点击右侧分类时获取左侧分类ID'),
+            parent_id: Joi.number().description('获得它的同类ID'),
         }
       },
     },
@@ -63,8 +63,8 @@ module.exports = [
         // },
         query: {
           ...paginationDefine,
-          id: Joi.number().required().description('获得当前分类ID'),
-          parent_id: Joi.number().required().description('获得它的同类ID'),
+          id: Joi.number().description('获得当前分类ID'),
+          parent_id: Joi.number().description('获得它的同类ID'),
         }
       },
     }
