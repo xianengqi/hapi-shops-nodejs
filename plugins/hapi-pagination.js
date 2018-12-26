@@ -1,7 +1,9 @@
 const hapiPagination = require('hapi-pagination');
 
-const options = {
-  query: {
+const pageOptions = {
+  register: hapiPagination,
+  options: {
+    query: {
     page: {
       name: 'page',
       default: 1,
@@ -85,9 +87,9 @@ const options = {
     ],
     exclude: [],
   },
+  },
 };
 
 module.exports = {
-  register: hapiPagination,
-  options,
+  pageOptions: pageOptions
 };

@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { paginationDefine } = require('../utils/router-helper');
+const { paginationDefine } = require('../lib/router-helper');
 const models = require('../models');
 const GROUP_NAME = 'category';
 
