@@ -87,6 +87,7 @@ const pageOptions = {
       '/collect/addcollect',
       '/collect/listAction',
       '/collect/deleteCollect',
+      '/cart/addCart',
     ],
     exclude: [],
   },
