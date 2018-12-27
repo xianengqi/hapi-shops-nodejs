@@ -81,7 +81,12 @@ const pageOptions = {
       '/topic/listaction',
       '/topic/detailaction',
       '/search/indexaction',
-      '/search/helperaction'
+      '/search/helperaction',
+      '/search/addhistoryaction',
+      '/search/clearhistoryAction',
+      '/collect/addcollect',
+      '/collect/listAction',
+      '/collect/deleteCollect',
     ],
     exclude: [],
   },
