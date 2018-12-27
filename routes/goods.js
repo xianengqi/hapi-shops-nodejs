@@ -33,13 +33,23 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: `/${GROUP_NAME}/{categoryId}/goodsList`,
+    path: `/${GROUP_NAME}/goodsList`,
     handler: async (request, reply) => {
-      reply();
+      let res = await controllers.goods.goodsList(request);
+      middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
       tags: ['api', GROUP_NAME],
-      description: '获取商品列表'
+      description: '获取商品列表',
+      validate: {
+        query: {
+          ...paginationDefine,
+          categoryId: Joi.number().description('获得商品类别Id'),
+          isNew: Joi.boolean().description('是否有新品列表'),
+          order: Joi.number().description('订单ID'),
+          isHot: Joi.boolean().description('最热商品'),
+        }
+      }
     }
   }
 ]

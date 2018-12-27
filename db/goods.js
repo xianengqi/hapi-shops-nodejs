@@ -99,10 +99,15 @@ detailAction = async (request) => {
       where: {
         user_id: request.query.openIdUserName
       },
-      // attributes: [
-      //   'number'
-      // ],
     })
+    let allnumber = 0;
+
+    if (oldNumber.length > 0) {
+      for (let i = 0; i < oldNumber.length; i++) {
+        const element = oldNumber[i];
+        allnumber += element.number
+      }
+    }
     return {
       results: {
         info,
@@ -121,8 +126,112 @@ detailAction = async (request) => {
   catch(e){
     return { results: e, dataBaseError: true}
   }
+};
+
+goodsList = async (request) => {
+  try{
+    const categoryId = request.query.categoryId;
+    const isNew = request.query.isNew;
+    const isHot = request.query.isHot;
+    let order = request.query.order;
+    let goodsList = [];
+
+    if (categoryId) {
+      // 获得商品列表
+      goodsList = await models.nideshop_goods.findAndCountAll({
+        where: {
+          "category_id": categoryId
+        },
+      });
+      // 获得当前分类
+      const currentNav = await models.nideshop_category.findAndCountAll({
+        where: {
+          "id": categoryId
+        }
+      });
+
+      // 如果goodslist没有可能这个分类是主分类 例如： 居家，厨具
+      if (goodsList.length == 0) {
+        // 找到与之相关的子类， 再找到与子类相关的商品列表
+        let subIds = await models.nideshop_category.findAndCountAll({
+          where: {
+            "parent_id": categoryId
+          },
+          attributes: [
+            'id',
+          ],
+        });
+        // 需要变成数组形式， childCategoryIds [1020000,1036002]
+        if (subIds.length != 0) {
+          subIds = subIds.map((item) => {
+            return item.id;
+          });
+        };
+        goodsList = await models.nideshop_goods.findAndCountAll({
+          where: {
+            category_id: {
+              [Op.in]: subIds
+            },
+          },
+          limit: 50,
+        });
+      };
+      return {
+        results: {
+          data: goodsList,
+          currentNav: currentNav[0]
+        },
+        dataBaseError: false
+      }
+    };
+
+    if (!order) {
+      order = '';
+      orderBy = "id"
+    } else {
+      orderBy = "retail_price"
+    };
+    /**
+     * 新品列表
+     */
+    if (isNew) {
+      goodsList = await models.nideshop_goods.findAndCountAll({
+        where: {
+          is_new: isNew
+        },
+        order: [orderBy, order],
+      });
+      return {
+        results: {
+          data: goodsList,
+        },
+        dataBaseError: false
+      }
+    };
+    /**
+     * 热门商品
+     */
+    if (isHot) {
+      goodsList = await models.nideshop_goods.findAndCountAll({
+        where: {
+          is_hot: isHot
+        },
+        order: [orderBy, order],
+      });
+      return {
+        results: {
+          data: goodsList,
+        },
+        dataBaseError: false
+      }
+    }
+  }
+  catch(e) {
+    return { results: e, dataBaseError: true}
+  }
 }
 
 module.exports = {
   detailAction,
+  goodsList
 }

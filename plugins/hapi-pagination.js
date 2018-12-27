@@ -77,6 +77,7 @@ const pageOptions = {
       '/category/currentAction',
       '/category/categoryNav',
       '/goods/detailaction',
+      '/goods/goodsList',
     ],
     exclude: [],
   },
