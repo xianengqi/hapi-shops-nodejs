@@ -32,35 +32,57 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: `/${GROUP_NAME}/{addressList}/getListAction`,
+    path: `/${GROUP_NAME}/getListAction`,
     handler: async (request, reply) => {
-      reply();
+      let res = await controllers.address.getListAction(request);
+      middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
       tags: ['api', GROUP_NAME],
       description: '获取收货地址列表',
+      validate: {
+        query: {
+          // ...paginationDefine,
+          openId: Joi.string().required(),
+        }
+      },
     },
   },
   {
     method: 'GET',
-    path: `/${GROUP_NAME}/{detailData}/detailAction`,
+    path: `/${GROUP_NAME}/detailAction`,
     handler: async (request, reply) => {
-      reply();
+      let res = await controllers.address.detailAction(request);
+      middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
       tags: ['api', GROUP_NAME],
       description: '获取收货地址详情',
+      validate: {
+        query: {
+          // ...paginationDefine,
+          Id: Joi.number().required(),
+        }
+      },
     },
   },
   {
     method: 'DELETE',
-    path: `/${GROUP_NAME}/{delData}/deleteAction`,
+    path: `/${GROUP_NAME}/deleteAction`,
     handler: async (request, reply) => {
-      reply();
+      let parms = request.payload;
+      let res = await controllers.address.deleteAction(parms);
+      middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
       tags: ['api', GROUP_NAME],
       description: '删除收货地址',
+      validate: {
+        // ...jwtHeaderDefine,
+        payload: Joi.object().keys({
+          id: Joi.number().required()
+        })
+      },
     },
   },
 ];

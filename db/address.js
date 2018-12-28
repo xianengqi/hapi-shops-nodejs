@@ -11,15 +11,6 @@ const Op = Sequelize.Op;
 
 saveAction = async (parms) => {
   try{
-    // var addressId = parms.body.addressId;
-    // const {
-    //   userName,
-    //   telNumber,
-    //   address,
-    //   detailadress,
-    //   checked,
-    //   openId
-    // } = parms.body;
     /**
      * 如果是默认选中，
      * 先在数据库查询是否默认地址
@@ -92,8 +83,87 @@ saveAction = async (parms) => {
     return { results: e, dataBaseError: true}
   }
 }
-
-
+/**
+ * 收获地址列表
+ * @param {*}  request
+ */
+getListAction = async (request) => {
+  try{
+    const addressList = await models.nideshop_address.findAndCountAll({
+      where: {
+        user_id: request.query.openId,
+      },
+      order: [
+        ['is_default', 'desc']
+      ]
+    });
+    return {
+      results: {
+        data: addressList
+      },
+      dataBaseError: false
+    }
+  }
+  catch(e){
+    return { results: e, dataBaseError: true}
+  }
+}
+/**
+ * 收获地址详情
+ * @param {*} 
+ */
+detailAction = async (request) => {
+  try{
+    const detailData = await models.nideshop_address.findAndCountAll({
+      where: {
+        id: request.query.Id
+      },
+    });
+    return {
+      results: {
+        data: detailData
+      },
+      dataBaseError: false
+    }
+  }
+  catch(e){
+    return { results: e, dataBaseError: true}
+  }
+}
+/**
+ * 删除收获地址
+ * @param {*}
+ */
+deleteAction = async (parms) => {
+  try {
+    const delData = await models.nideshop_address.destroy({
+      where: {
+        id: parms.id
+      },
+    });
+    if (delData) {
+      return {
+        results: {
+          data: true,
+        },
+        dataBaseError: false
+      };
+    } else {
+      return {
+        results: {
+          data: false
+        },
+        dataBaseError: false
+      }
+    }
+  }
+  catch(e){
+    return { results: e, dataBaseError: true}
+  }
+}
 module.exports = {
   saveAction,
+  getListAction,
+  detailAction,
+  deleteAction,
 }
