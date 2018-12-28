@@ -1,29 +1,33 @@
+const controllers = require('../db/index');
+const middleware = require('../middleware');
 const Joi = require('joi');
 const { paginationDefine } = require('../lib/router-helper');
-const models = require('../models');
 const GROUP_NAME = 'address';
 
 module.exports = [
   {
-    method: 'PUT',
-    path: `/${GROUP_NAME}/{addressId}/saveAction`,
+    method: 'POST',
+    path: `/${GROUP_NAME}/saveAction`,
     handler: async (request, reply) => {
-      // 增加带有where 的条件查询语句
-      const {
-        rows: results,
-        count: totalCount
-      } = await models.nideshop_address.findAndCountAll({
-        where: {
-          user_id: request.params.addressId,
-          is_default: 1
-        },
-        // attributes: 
-      })
-      reply();
+      let parms = request.payload;
+      let res = await controllers.address.saveAction(parms);
+      middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
       tags: ['api', GROUP_NAME],
       description: '保存和更新收货地址',
+      validate: {
+        // ...jwtHeaderDefine,
+        payload: Joi.object().keys({
+          // addressId: Joi.number().required(),
+          userName: Joi.string().required(),
+          telNumber: Joi.string().required(),
+          address: Joi.string().required(),
+          detailadress: Joi.string().required(),
+          openId: Joi.string().required(),
+          checked: Joi.boolean().required(),
+        })
+      },
     },
   },
   {

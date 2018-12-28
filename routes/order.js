@@ -41,7 +41,7 @@ module.exports = [
           ...paginationDefine,
           openId: Joi.string(),
           openIder: Joi.string(),
-          openIdUser: Joi.string(),
+          openIdUser: Joi.string().required(),
           addressIdUser: Joi.string().required(),
         }
       },
