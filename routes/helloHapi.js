@@ -1,4 +1,4 @@
-const { jwtHeaderDefine } = require('../lib/router-helper');
+// const { jwtHeaderDefine } = require('../lib/router-helper');
 
 module.exports = [
   {
@@ -13,7 +13,7 @@ module.exports = [
       tags: ['api', 'tests'],
       description: '测试hello-hapi',
       validate: {
-        ...jwtHeaderDefine, // 增加需要 jwt auth 认证的接口 header 校验
+        // ...jwtHeaderDefine, // 增加需要 jwt auth 认证的接口 header 校验
       },
     },
   },
