@@ -13,6 +13,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '首页品牌制造商直供的详情内的列表数据',
       validate: {
@@ -31,6 +32,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '首页品牌制造商直供的详情数据',
       validate: {

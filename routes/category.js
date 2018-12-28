@@ -13,6 +13,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '获取所有的分类',
       validate: {
@@ -32,6 +33,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '通过分类的id来查询子类接口',
       validate: {
@@ -55,6 +57,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '获取导航数据',
       validate: {

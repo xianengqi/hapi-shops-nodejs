@@ -13,6 +13,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '获取专题列表',
       validate: {
@@ -31,6 +32,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '获取详情加下方四个专题推荐',
       validate: {

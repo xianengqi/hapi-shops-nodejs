@@ -14,6 +14,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '添加收藏',
       validate: {
@@ -33,6 +34,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '获取收藏列表',
       validate: {
@@ -54,6 +56,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '删除收藏列表',
       validate: {

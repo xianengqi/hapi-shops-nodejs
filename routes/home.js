@@ -16,6 +16,7 @@ module.exports = [
       middleware.dbErrorMiddleware(request, res, reply);
     },
     config: {
+      auth: false,
       tags: ['api', GROUP_NAME],
       description: '获取首页数据',
       validate: {

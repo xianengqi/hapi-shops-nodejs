@@ -22,6 +22,7 @@ const home = require('./home');
 const order = require('./order');
 const search = require('./search');
 const topic = require('./topic');
+const user = require('./users');
 
 module.exports = [
   ...helloHapi,
@@ -36,6 +37,7 @@ module.exports = [
   ...order,
   ...search,
   ...topic,
+  ...user,
   {
     method: 'GET',
     path: '/{param*}',

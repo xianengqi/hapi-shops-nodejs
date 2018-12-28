@@ -28,6 +28,7 @@ module.exports = [
         { name: 'order', description: '订单相关接口' },
         { name: 'address', description: '收获地址相关接口' },
         { name: 'feedback', description: '意见反馈相关接口' },
+        { name: 'users', description: '小程序登录授权接口' },
       ],
     },
   },
