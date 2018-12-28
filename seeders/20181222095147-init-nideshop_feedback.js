@@ -5,7 +5,7 @@ const timestamps = {
 
 module.exports = {
   up: queryInterface => queryInterface.bulkInsert(
-    'nideshop_feedback',
+    'feedbacks',
     [
       {
         "id": "1",
@@ -36,7 +36,7 @@ module.exports = {
     const {
       Op
     } = Sequelize;
-    return queryInterface.bulkDelete('nideshop_feedback', {
+    return queryInterface.bulkDelete('feedbacks', {
       id: {
         [Op.in]: [1, 2, 3]
       }

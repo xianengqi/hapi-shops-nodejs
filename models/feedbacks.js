@@ -1,6 +1,5 @@
 module.exports = (sequelize, DataTypes) => sequelize.define(
-  'feedbacks',
-  {
+  'feedbacks', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -28,8 +27,7 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
       allowNull: false,
       defaultValue: false,
     },
-  },
-  {
+  }, {
     tableName: 'feedbacks'
   }
 )
