@@ -1,4 +1,4 @@
-### [小程序后端接口](www.xianengqi.com/documentation)
+### 小程序后端接口地址   www.xianengqi.com/documentation
 ![](https://github.com/xianengqi/hapi-shops-nodejs/blob/master/test/test.png?raw=true)
 ### 项目技术选型基于nodejs：[Hapi](https://hapijs.com/api)+[Sequelize](https://sequelize.readthedocs.io/en/v3/)+[Swagger生成接口文档](https://swagger.io/)
 
